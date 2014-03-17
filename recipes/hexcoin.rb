@@ -6,7 +6,7 @@ include_recipe "crypto-coin::default"
 # Download, compile and configure the cryptocoin
 crypto_coin "HeisenbergHex" do
   repository    "https://github.com/HeisenbergCoin/HeisenbergHex.git"
-  port          39547
+  port          39548
   rpcpassword   "nojxxq2rryghg1p0ti7x"
 end
 
