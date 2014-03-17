@@ -11,10 +11,11 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu-12.04.2-amd64"
   config.vm.box_url = "https://dl.dropbox.com/u/2894322/ubuntu-12.04.2-amd64.box"
 
-  config.vm.provision :chef_solo do |chef|
-    chef.json = {}
-    chef.log_level = :debug
-    chef.add_recipe "build-essential"
-    chef.add_recipe "crypto-coin::litecoin"
-  end
+  #config.vm.provision :chef_solo do |chef|
+  #  chef.json = {}
+  #  chef.cookbooks_path = "../../cookbooks"
+  #  chef.log_level = :debug
+  #  chef.add_recipe "build-essential::default"
+  #  chef.add_recipe "crypto-coin::HeisenbergHex"
+  #end
 end
