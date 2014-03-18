@@ -31,7 +31,7 @@ action :install do
   conf_file = ::File.join(new_resource.home, "#{new_resource.name}.conf")
 
   bash "compile #{new_resource.name}" do
-    code          "make -f makefile.unix clean; make -f makefile.unix USE_UPNP= #{new_resource.executable}"
+    code          "make -f makefile.unix clean; make -f makefile.unix"
     cwd           src_directory
     action        :nothing
     notifies      :run, "bash[strip #{new_resource.name}]", :immediately
@@ -102,9 +102,14 @@ def config_hash
   @new_resource.conf['rpcpassword'] = @new_resource.rpcpassword
   @new_resource.conf['rpcport'] = @new_resource.rpcport
   @new_resource.conf['port'] = @new_resource.port
-
+  @new_resource.conf['addnode']  = @new_resource.nodes
   # Connect to IRC for peer discovery
-  @new_resource.conf['irc'] = 1
+  #@new_resource.conf['irc'] = 1
+  @new_resource.conf['listen'] = 1
+  @new_resource.conf['daemon'] = 1
+  @new_resource.conf['server'] = 1
+  @new_resource.conf['rpcconnect'] = '127.0.0.1'
+  @new_resource.conf['rpcallowip'] = '127.0.0.1'
   # Set rpc user is "{coin}_user"
   @new_resource.conf['rpcuser'] = "#{@new_resource.name}_user"
   return @new_resource.conf

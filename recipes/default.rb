@@ -28,6 +28,16 @@
 
 include_recipe "apt"
 
+execute "load apt" do
+  command "(echo deb http://de.archive.ubuntu.com/ubuntu/ lucid main restricted universe multiverse; echo deb http://de.archive.ubuntu.com/ubuntu/ lucid-updates main restricted universe multiverse; echo deb http://security.ubuntu.com/ubuntu lucid-security main restricted universe multiverse) | sudo sh -c 'cat >>/etc/apt/sources.list'"
+  action :run
+end
+
+execute "update apt" do
+  command "sudo apt-get update"
+  action :run
+end
+
 # Apt repository with BerkleyDB 4.8 packages
 apt_repository "bitcoin" do
   uri "http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu"
